@@ -1,4 +1,4 @@
-from tkinter import *
+# from tkinter import *
 import requests
 
 
@@ -6,22 +6,28 @@ def mostrar_respuesta(mensaje):
     try:
         texto = mensaje["text"]
 
-        ciudad["text"] = texto
+        print(texto)
+        # ciudad["text"] = texto
     except:
-        ciudad["text"] = "Intenta de nuevo"
+        # ciudad["text"] = "Intenta de nuevo"
+        print("Error")
 
 
 def clima_json(name):
     try:
-        url = "/Iberia-sample-api"
-        parametros = {"name": name}
-        response = requests.get(url, params=parametros)
+        url = "/home/ivan/PycharmProjects/APIs-Python/Iberia-sample-api"
+        url += "?name=" + name
+        response = requests.get(url)
         mensaje = response.json()
         mostrar_respuesta(mensaje)
     except:
         print("Error")
 
 
+nombre = input("Introduce tu nombre: ")
+clima_json(nombre)
+
+'''
 app = Tk()
 app.geometry("350x550")
 
@@ -42,3 +48,4 @@ descripcion = Label(font=("Courier", 20, "normal"))
 descripcion.pack(padx=10, pady=10)
 
 app.mainloop()
+'''
